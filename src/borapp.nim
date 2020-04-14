@@ -5,6 +5,7 @@ const url = "https://www.boletinoficial.gob.ar/busquedaAvanzada/realizarBusqueda
 let client = newHttpClient(headers = newHttpHeaders({"dnt": "1", "accept": "application/json"}))
 
 template getMultipartData(search; todasLasPalabras; seccion; nroNorma; anioNorma; fecha; rubros): MultipartData =
+  ## HTTP MultiPart Data, construye params para la API de BORA.
   newMultipartData({"params": """{
     "busquedaRubro":false,"hayMasResultadosBusqueda":true,"ejecutandoLlamadaAsincronicaBusqueda":false,
     "ultimaSeccion":"","filtroPorRubrosSeccion":false,"filtroPorRubroBusqueda":false,"filtroPorSeccionBusqueda":false,
@@ -12,10 +13,11 @@ template getMultipartData(search; todasLasPalabras; seccion; nroNorma; anioNorma
     "ultimoItemInterno":null,"texto":"""" & search & """","rubros":[""" & rubros & """],"nroNorma":"""" & nroNorma & """","anioNorma":"""" & anioNorma & """","denominacion":"","tipoContratacion":"",
     "anioContratacion":"","nroContratacion":"","fechaDesde":"""" & fecha & """","fechaHasta":"""" & fecha & """","todasLasPalabras":""" & $todasLasPalabras & """,
     "comienzaDenominacion":true,"seccion":[""" & $seccion & """],"tipoBusqueda":"Avanzada","numeroPagina":1,"ultimoRubro":""
-  }""", "array_volver": "[]"})
+  }""", "array_volver": "[]"})  # Esto un formato raro que usa el BORA, no es code-golf.
 
 proc boraUpdate(search = ""; todasLasPalabras = true; seccion = 1;
     nroNorma = ""; anioNorma = ""; fecha = now().format("dd/MM/yyyy"); rubros = ""): seq[string] =
+  ## Actualiza con data nueva de BORA segun los argumentos, retorna secuencia de strings.
   let
     mltprt = getMultipartData(search, todasLasPalabras, seccion, nroNorma, anioNorma, fecha, rubros)
     rawurls = parseJson(client.postContent(url, multipart = mltprt)){"content", "html"}.getStr
@@ -25,6 +27,7 @@ proc boraUpdate(search = ""; todasLasPalabras = true; seccion = 1;
   result = mapIt(news, replace($(it[0]), " id=\"cuerpoDetalleAviso\">", " id=\"cuerpoDetalleAviso\"><details>") & "</details><hr>")
 
 template updateUI(news) =
+  ## Actualiza la UI con las news.
   app.js(app.setText("#output", ""))
   for item in news: app.js(app.addHtml("#output", item))
 
@@ -32,6 +35,7 @@ let app = newWebView(currentHtmlPath(), "Boletin Oficial Republica Argentina", 8
 updateUI(boraUpdate())
 
 proc updateInternal(data: string) =
+  ## Toma argumentos desde UI y Actualiza con data nueva de BORA.
   let jsn = parseJson(data)
   updateUI(boraUpdate(
     search           = jsn["search"].getStr,
