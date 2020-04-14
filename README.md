@@ -37,6 +37,17 @@
 - Ejecutar.
 
 
+# Compilar
+
+- Para Desarrolladores.
+
+```console
+git clone https://github.com/juancarlospaco/borapp
+nimble install q webgui
+nim compile --run -d:ssl src/borapp.nim
+```
+
+
 # Desinstalar
 
 - Borrarla.
