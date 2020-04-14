@@ -21,7 +21,7 @@
 ![](https://raw.githubusercontent.com/juancarlospaco/borapp/master/borapp3.png)
 
 
-# Documentation Desarrollo
+# Documentacion Desarrollo
 
 - https://juancarlospaco.github.io/borapp
 
