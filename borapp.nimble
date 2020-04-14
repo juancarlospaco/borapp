@@ -6,3 +6,5 @@ srcDir        = "src"
 bin           = @["borapp"]
 
 requires "nim >= 1.2.0"
+requires "q >= 0.0.7"
+requires "webgui >= 0.4.0"
