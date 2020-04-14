@@ -41,7 +41,7 @@ jobs:
       run: |
         export PATH=$HOME/.nimble/bin:$PATH
         nimble -y refresh
-        nimble -y q webgui
+        nimble -y install q webgui
 
     - name: Install dependencies
       run: |

@@ -9,6 +9,7 @@
 ![](https://img.shields.io/github/issues-raw/juancarlospaco/borapp?style=for-the-badge "Bugs")
 ![](https://img.shields.io/github/issues-pr-raw/juancarlospaco/borapp?style=for-the-badge "PRs")
 ![](https://img.shields.io/github/last-commit/juancarlospaco/borapp?style=for-the-badge "Commits")
+![](https://github.com/juancarlospaco/borapp/workflows/Build/badge.svg?branch=master)
 
 
 ![](https://raw.githubusercontent.com/juancarlospaco/borapp/master/borapp.png)
