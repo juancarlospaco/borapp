@@ -1,0 +1,62 @@
+<center><h1>Boletin Oficial Republica Argentina</h1></center>
+<marquee scrollamount=1 loop=1 > BORApp - Desarrollado por Nim Argentina </marquee>
+<fieldset>
+  <legend>Filtro</legend>
+  <label>Buscar
+    <input type='search' name='search' id='search' placeholder='Buscar...' style="width:99%"/>
+  </label>
+  <input type='checkbox' name='todasLasPalabras' id='todasLasPalabras'/>
+  <label for='todasLasPalabras'>Buscar todas las palabras?</label><br>
+  <label for='rubros'>Tipo
+  <select id="rubros" name="rubros">
+    <option value="">Todo</option>
+    <option value="Acordadas">Acordadas</option>
+    <option value="Asociaciones Sindicales">Asociaciones Sindicales</option>
+    <option value="Audiencias Públicas">Audiencias Publicas</option>
+    <option value="Avisos Oficiales">Avisos Oficiales</option>
+    <option value="Concursos Oficiales">Concursos Oficiales</option>
+    <option value="Convenciones Colectivas de Trabajo">Convenciones Colectivas de Trabajo</option>
+    <option value="Decisiones Administrativas">Decisiones Administrativas</option>
+    <option value="Decretos">Decretos</option>
+    <option value="Decretos Desclasificados">Decretos Desclasificados</option>
+    <option value="Disposiciones">Disposiciones</option>
+    <option value="Disposiciones Sintetizadas">Disposiciones Sintetizadas</option>
+    <option value="Fallos">Fallos</option>
+    <option value="Instrucciones Presidenciales">Instrucciones Presidenciales</option>
+    <option value="Intrucciones Generales">Intrucciones Generales</option>
+    <option value="Legislacion">Legislacion</option>
+    <option value="Leyes">Leyes</option>
+    <option value="Remates Oficiales">Remates Oficiales</option>
+    <option value="Resoluciones">Resoluciones</option>
+    <option value="Resoluciones Conjuntas">Resoluciones Conjuntas</option>
+    <option value="Resoluciones Generales">Resoluciones Generales</option>
+    <option value="Resoluciones Sintetizadas">Resoluciones Sintetizadas</option>
+    <option value="Sentencias">Sentencias</option>
+    <option value="Tratados y Convenios Internacionales">Tratados y Convenios Internacionales</option>
+  </select>
+  </label>
+  <label>Seccion
+    <input type='number' name='seccion' id='seccion' value=1 min=1 max=3 step=1 />
+  </label>
+  <details>
+    <summary>Avanzado</summary>
+    <label>Numero de Norma
+      <input type='number' name='nroNorma' id='nroNorma' min=0 step=1 />
+    </label>
+    <label>Anio de Norma
+      <input type='number' name='anioNorma' id='anioNorma' min=2000 step=1 />
+    </label>
+  </details>
+  <button onclick='api.update(JSON.stringify({
+    "search":           document.querySelector("#search").value.trim(),
+    "todasLasPalabras": document.querySelector("#todasLasPalabras").checked,
+    "seccion":          Number(document.querySelector("#seccion").value),
+    "nroNorma":         document.querySelector("#nroNorma").value,
+    "anioNorma":        document.querySelector("#anioNorma").value,
+    "rubros":           document.querySelector("#rubros").options[document.querySelector("#rubros").selectedIndex].value
+  }))'>Dale che</button>
+</fieldset>
+<fieldset>
+  <legend>BORA</legend>
+  <div id="output" name="output"></div>
+</fieldset>
