@@ -1,6 +1,6 @@
 # BORApp
 
-- **BORA App: Boletin Oficial Republica Argentina**
+- **BORA App: [Boletin Oficial Republica Argentina](https://www.boletinoficial.gob.ar)**
 
 
 ![](https://raw.githubusercontent.com/juancarlospaco/borapp/master/borapp.png)
